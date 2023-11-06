@@ -172,6 +172,9 @@ pipeline{
 ![Alt text](static/pic4.png)
 
 
+**Congratulations!!!!  designed an End-2-End CICD Automated Pipeline**
+
+
 
 
 
