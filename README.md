@@ -1,3 +1,3 @@
-# flask-app
-### Deployment using GitOps Principles
-## Steps involved
+# Flask App Deployment using GitOps Principles
+
+
