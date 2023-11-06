@@ -17,12 +17,12 @@ To address these challenges and achieve a more efficient and competitive softwar
 To address these challenges and achieve the desired state, DevOps Team will embark on a focused initiative to implement end-to-end automation. We will leverage modern tools, methodologies, and best practices to optimize our software development and delivery processes ensuring high-quality with speed and precision.
 
 ## TOOLS USED:
-**Git:** Used for version control and source code management.
-**Jenkins:** Used for automating building, testing, and deployment of software.
-**Docker:** Used for containerization and application deployment.
-**Kubernetes:** Used for orchestrating and managing containerized applications.
-**GitOps:** Used for managing and automating the deployment and configuration of infrastructure and applications through version-controlled Git repositories.
-```t
+**Git:**           Used for version control and source code management.
+**Jenkins:**       Used for automating building, testing, and deployment of software.
+**Docker:**        Used for containerization and application deployment.
+**Kubernetes:**    Used for orchestrating and managing containerized applications.
+**GitOps:**        Used for managing and automating the deployment and configuration of infrastructure and applications through version-controlled Git repositories.
+
 
 #### Why GitOps ??
 
