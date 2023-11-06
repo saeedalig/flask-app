@@ -39,6 +39,11 @@ To address these challenges and achieve the desired state, DevOps Team will emba
 - **Collaboration:** GitOps encourages collaboration among development and operations teams. By storing Kubernetes configurations in Git repositories, you can use Git's collaboration features, including pull requests and code reviews, to ensure high-quality configurations.
 
 
+## Pipeline 
+I have created two pipelines in Jenkins. One for Continuous Integration(CI) and another for Continuous Deployment(CD). CI pipeline ended with triggering the CD pileline.
+[CD Pipeline](https://github.com/saeedalig/k8s-manifest.git)
+
+
 
 
 
