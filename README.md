@@ -41,6 +41,7 @@ To address these challenges and achieve the desired state, DevOps Team will emba
 
 ## Pipeline 
 I have created two pipelines in Jenkins. One for Continuous Integration(CI) and another for Continuous Deployment(CD). CI pipeline ended with triggering the CD pileline.
+
 [CD Pipeline](https://github.com/saeedalig/k8s-manifest.git)
 
 
