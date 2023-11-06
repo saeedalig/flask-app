@@ -40,9 +40,9 @@ To address these challenges and achieve the desired state, DevOps Team will emba
 
 
 ## Pipeline 
-I have created two pipelines in Jenkins. One for Continuous Integration(CI) and another for Continuous Deployment(CD). CI pipeline ended with triggering the CD pileline.
+I have created two pipelines in Jenkins. One for Continuous Integration(CI) and another for [Continuous Deployment](https://github.com/saeedalig/k8s-manifest.git)
+. CI pipeline ended with triggering the CD pileline. To keep the project simple, I have added few stages in CD pipeline that only update the IMAGE_TAG coming from the CI pipeline in the deployment manifest and then push it to the GitHub to get the latest changes reflected in Kubernetes Cluster.  
 
-[CD Pipeline](https://github.com/saeedalig/k8s-manifest.git)
 
 
 
