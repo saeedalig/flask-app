@@ -28,7 +28,12 @@ To address these challenges and achieve the desired state, DevOps Team will emba
 **GitOps:**        Used for managing and automating the deployment and configuration of infrastructure and applications through version-controlled Git repositories.
 
 
-#### Why GitOps ??
+
+### Why GitOps ??
+- **Modern Approach:** GitOps is a **modern approach** to managing and automating the deployment and operation of infrastructure and applications, particularly in cloud-native environments. The core idea of GitOps is to use Git repositories as the single source of truth for defining and managing your infrastructure, application configurations, and deployment processes. 
+
+- **Continuous Synchronization:** GitOps tools continuously monitor the Git repository for changes and synchronize the state of the system with the declared state.
+
 
 
 
