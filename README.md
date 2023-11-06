@@ -27,6 +27,8 @@ To address these challenges and achieve the desired state, DevOps Team will emba
 
 **GitOps:**        Used for managing and automating the deployment and configuration of infrastructure and applications through version-controlled Git repositories.
 
+![Alt text](static/pic1.png)
+
 
 
 ### Why GitOps ??
@@ -163,6 +165,9 @@ pipeline{
     }
 }
 ```
+
+![Alt text](static/pic2.png)
+![Alt text](static/pic3.png)
 
 
 
