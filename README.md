@@ -44,7 +44,7 @@ I have created two pipelines in Jenkins. One for Continuous Integration(CI) and 
 . CI pipeline ended with triggering the CD pileline. To keep the project simple, I have added few stages in CD pipeline that only update the IMAGE_TAG coming from the CI pipeline in the deployment manifest and then push it to the GitHub to get the latest changes reflected in Kubernetes Cluster.  
 
 
-### Pipeline Code
+### Pipeline Script
 **Continuos Integration**
 
 ```
@@ -104,6 +104,60 @@ pipeline{
         stage ('Trigger CD Job') {
             steps {
                 sh "curl -v -k --user devops:11fc52e17d5d2dc14c59634022bcb40018 -X POST -H 'cache-control: no-cache' -H  'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://172.30.119.251:8080/job/flaskAp-CD/buildWithParameters?token=gitops-token'"
+            }
+        }
+    }
+}
+```
+The last stage will trigger the second pipeline (script mentioned below)
+
+**Continuos Deployment**
+```
+pipeline{
+    agent any
+    
+    environment {
+        APP_NAME = "flask-app"
+    }
+
+
+	
+    stages {
+	
+        stage('Clean Workspace'){
+            steps{
+                cleanWs()
+            }
+        }
+		
+        stage('Git Checkout'){
+            steps{
+                git branch: 'main', url: 'https://github.com/saeedalig/k8s-manifest.git'
+            }
+        }
+        
+        stage('Update k8s deployment file'){
+            steps {
+                sh "cat deployment.yaml"
+                sh "sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deployment.yaml"                
+                sh "cat deployment.yaml"
+            }
+        }
+        
+        stage('Push the changed deployment file to GitHub') {
+            steps {
+                script {
+                    sh """
+                    git config --global user.name "saeed"
+                    git config --global user.email "saeed@gmail.com"
+                    git add deployment.yaml
+                    git commit -m 'Updated the deployment file'
+                    """
+                    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                        sh 'git remote set-url origin https://$USER:$PASS@github.com/saeedalig/k8s-manifest.git'
+                        sh 'git push origin main'
+                    }
+                }
             }
         }
     }
