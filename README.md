@@ -169,6 +169,8 @@ pipeline{
 ![Alt text](static/pic2.png)
 ![Alt text](static/pic3.png)
 
+![Alt text](static/pic4.png)
+
 
 
 
