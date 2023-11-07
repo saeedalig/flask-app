@@ -40,6 +40,20 @@ To address these challenges and achieve the desired state, DevOps Team will emba
 
 - **Collaboration:** GitOps encourages collaboration among development and operations teams. By storing Kubernetes configurations in Git repositories, you can use Git's collaboration features, including pull requests and code reviews, to ensure high-quality configurations.
 
+## Installation
+**Jenkins**
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins -y
+
+# Password to log in Jenkins
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword```
+```
+
 
 ## Pipeline 
 I have created two pipelines in Jenkins. One for Continuous Integration(CI) and another for [Continuous Deployment](https://github.com/saeedalig/k8s-manifest.git)
