@@ -42,6 +42,7 @@ To address these challenges and achieve the desired state, DevOps Team will emba
 
 ## Installation
 **Jenkins**
+```
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
@@ -51,7 +52,49 @@ sudo apt-get update
 sudo apt-get install jenkins -y
 
 # Password to log in Jenkins
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword```
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+
+**Docker**
+```
+sudo apt update
+sudo apt install docker.io -y
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo usermod -aG $USER
+sudo chmod 777 /var/docker.sock
+```
+
+**Minikube**
+```
+sudo apt-get update
+sudo apt-get install -y apt-transport-https
+sudo apt-get install -y gnupg2 curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+chmod +x minikube
+sudo mv minikube /usr/local/bin/
+
+minikube start --driver=docker
+
+```
+
+**Argocd(GitOps)**
+```
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# Service
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
+kubectl port-forward svc/argocd-server -n argocd 8085:443
+
+# passwd
+argocd admin initial-password -n argocd
+hZNPQCsebEDT6Xce
 ```
 
 
