@@ -62,7 +62,7 @@ sudo apt install docker.io -y
 sudo systemctl enable docker
 sudo systemctl start docker
 sudo usermod -aG $USER
-sudo chmod 777 /var/docker.sock
+sudo chmod 777 /var/run/docker.sock
 ```
 
 **Minikube**
