@@ -6,7 +6,7 @@ pipeline{
         APP_NAME = "flask-app"
         IMAGE_TAG = "${BUILD_NUMBER}"
         IMAGE_NAME = "${DOCKERHUB}" + "/" + "${APP_NAME}"
-        REGISTRY_CREDS = "dockerhub-auth"
+        REGISTRY_CREDS = "docker-auth"
     }
 
 
