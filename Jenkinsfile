@@ -19,7 +19,7 @@ pipeline{
             }
         }
 		
-        stage('Git Checkout'){
+        stage('Code Checkout'){
             steps{
                 git branch: 'main', url: 'https://github.com/saeedalig/flask-app.git'
             }
