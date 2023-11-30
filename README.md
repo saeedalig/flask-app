@@ -2,7 +2,7 @@
 
 
 ## Introduction
-In ABC organization, one of the most critical challenges hindering software development and delivery process is the lack of end-to-end automation. The absence of a streamlined, automated workflow is impacting organization's efficiency, quality, and competitiveness. The organization currently relies heavily on manual processes and lacks a comprehensive end-to-end automation strategy for software development and delivery pipeline. This has resulted in several key issues:
+In ABC organization, one of the most critical challenges hindering software development and delivery process is the lack of **End-to-End Automation**. The absence of a streamlined, automated workflow is impacting organization's efficiency, quality, and competitiveness. The organization currently relies heavily on manual processes and lacks a comprehensive end-to-end automation strategy for software development and delivery pipeline. This has resulted in several key issues:
 - Manual, Error-Prone Workflows
 - Inconsistent Testing and Quality Assurance
 - Slow-Release Cycles
@@ -15,7 +15,7 @@ To address these challenges and achieve a more efficient and competitive softwar
 - Enhance Scalability
 - Improve Reliability and Predictability
 
-To address these challenges and achieve the desired state, DevOps Team will embark on a focused initiative to implement end-to-end automation. We will leverage modern tools, methodologies, and best practices to optimize our software development and delivery processes ensuring high-quality with speed and precision.
+To achieve the desired state by addressing the concerned challenges, DevOps Team will embark on a focused initiative to implement an **End-to-End Automation** by leverage modern tools, methodologies, and best practices to optimize software development and delivery processes ensuring high-quality with speed and precision.
 
 ## TOOLS USED:
 **Git:**           Used for version control and source code management.
@@ -26,7 +26,7 @@ To address these challenges and achieve the desired state, DevOps Team will emba
 
 **Kubernetes:**    Used for orchestrating and managing containerized applications.
 
-**GitOps:**        Used for managing and automating the deployment and configuration of infrastructure and applications through version-controlled Git repositories.
+**Argocd:**        Used for managing and deploying applications to Kubernetes clusters by using Git repositories as the source of truth.
 
 ![Alt text](static/pic1.png)
 
@@ -41,7 +41,17 @@ To address these challenges and achieve the desired state, DevOps Team will emba
 
 - **Collaboration:** GitOps encourages collaboration among development and operations teams. By storing Kubernetes configurations in Git repositories, you can use Git's collaboration features, including pull requests and code reviews, to ensure high-quality configurations.
 
+## Branching Strategy
+There are two branches `main` and `staging`. All the code changes are pushed to the staging branch. To merge the code changes into main, a Pull Request is raised.
+
+- I've set up a webhook trigger in Jenkins using the **Generic Webhook Trigger plugin** to execute a Jenkins job when a ***Pull Request*** is opened to merge changes from a staging branch to the main branch. 
+- When a pull request is opened to merge changes from the staging branch to the main branch, the version control system sends a webhook payload to the Jenkins server.
+- The Generic Webhook Trigger plugin in Jenkins parses the webhook payload and extracts relevant information, such as the event type, branch information, and any other relevant data.
+- If the conditions are met, the Jenkins job is triggered, and it begins executing the defined steps in your Jenkins pipeline. This could involve building, testing, and deploying your application.
+  
+
 ## Installation
+
 **Jenkins**
 ```
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
@@ -51,6 +61,9 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
 sudo apt-get install jenkins -y
+
+sudo systemctl enable jenkins
+sudo systemctl restart jenkins
 
 # Password to log in Jenkins
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
