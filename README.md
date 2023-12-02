@@ -114,7 +114,7 @@ hZNPQCsebEDT6Xce
 
 ## Pipeline 
 I have created two pipelines in Jenkins. One for Continuous Integration(CI) and another for [Continuous Deployment](https://github.com/saeedalig/k8s-manifest.git)
-. CI pipeline ended with triggering the CD pileline. To keep the project simple, I have added few stages in CD pipeline that only update the IMAGE_TAG coming from the CI pipeline in the deployment manifest and then push it to the GitHub to get the latest changes reflected in Kubernetes Cluster.  
+. CI pipeline ends with triggering the CD pileline. To keep the project simple, I have added few stages in CD pipeline that only update the IMAGE_TAG coming from the CI pipeline in the deployment manifest and then push it to the GitHub to get the latest changes reflected in Kubernetes Cluster through `Argocd`.  
 
 
 ### Pipeline Script
@@ -182,7 +182,7 @@ pipeline{
     }
 }
 ```
-The last stage will trigger the second pipeline (script mentioned below)
+The last stage will trigger the CD Job (script mentioned below)
 
 **Continuos Deployment**
 ```
@@ -193,8 +193,6 @@ pipeline{
         APP_NAME = "flask-app"
     }
 
-
-	
     stages {
 	
         stage('Clean Workspace'){
