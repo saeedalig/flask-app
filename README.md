@@ -41,14 +41,6 @@ To achieve the desired state by addressing the concerned challenges, DevOps Team
 
 - **Collaboration:** GitOps encourages collaboration among development and operations teams. By storing Kubernetes configurations in Git repositories, you can use Git's collaboration features, including pull requests and code reviews, to ensure high-quality configurations.
 
-## Branching Strategy
-There are two branches `main` and `staging`. All the code changes are pushed to the staging branch. To merge the code changes into main, a Pull Request is raised.
-
-- I've set up a webhook trigger in Jenkins using the **Generic Webhook Trigger plugin** to execute a Jenkins job when a ***Pull Request*** is opened to merge changes from a staging branch to the main branch. 
-- When a pull request is opened to merge changes from the staging branch to the main branch, the version control system sends a webhook payload to the Jenkins server.
-- The Generic Webhook Trigger plugin in Jenkins parses the webhook payload and extracts relevant information, such as the event type, branch information, and any other relevant data.
-- If the conditions are met, the Jenkins job is triggered, and it begins executing the defined steps in your Jenkins pipeline. This could involve building, testing, and deploying your application.
-  
 
 ## Installation
 
@@ -131,8 +123,6 @@ pipeline{
         IMAGE_NAME = "${DOCKERHUB}" + "/" + "${APP_NAME}"
         REGISTRY_CREDS = "dockerhub"
     }
-
-
 	
     stages {
 	
@@ -182,6 +172,7 @@ pipeline{
     }
 }
 ```
+
 The last stage will trigger the CD Job (script mentioned below)
 
 **Continuos Deployment**
