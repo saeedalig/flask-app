@@ -33,28 +33,28 @@ pipeline{
             }
         }
         
-        // stage('Push Docker Image'){
-        //     steps {
-        //         script{
-        //             docker.withRegistry('', REGISTRY_CREDS ){
-        //                 docker_image.push("${BUILD_NUMBER}")
-        //                 docker_image.push('latest')
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Push Docker Image'){
+            steps {
+                script{
+                    docker.withRegistry('', REGISTRY_CREDS ){
+                        docker_image.push("${BUILD_NUMBER}")
+                        docker_image.push('latest')
+                    }
+                }
+            }
+        }
         
-        // stage('Delete Docker Images'){
-        //     steps {
-        //         sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-        //         sh "docker rmi ${IMAGE_NAME}:latest"
-        //     }
-        // }
+        stage('Delete Docker Images'){
+            steps {
+                sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+                sh "docker rmi ${IMAGE_NAME}:latest"
+            }
+        }
         
-        // stage ('Trigger CD Job') {
-        //     steps {
-        //         sh "curl -v -k --user devops:11fc52e17d5d2dc14c59634022bcb40018 -X POST -H 'cache-control: no-cache' -H  'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://172.30.119.251:8080/job/flaskAp-CD/buildWithParameters?token=gitops-token'"
-        //     }
-        // }
+        stage ('Trigger CD Job') {
+            steps {
+                sh "curl -v -k --user devops:11fc52e17d5d2dc14c59634022bcb40018 -X POST -H 'cache-control: no-cache' -H  'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://172.30.119.251:8080/job/flaskAp-CD/buildWithParameters?token=gitops-token'"
+            }
+        }
     }
 }
