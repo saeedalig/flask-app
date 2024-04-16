@@ -1,7 +1,7 @@
 # Flask App Deployment using GitOps Principles  
 
 
-## Introduction
+# Introduction
 In ABC organization, one of the most critical challenges hindering software development and delivery process is the lack of **End-to-End Automation**. The absence of a streamlined, automated workflow is impacting organization's efficiency, quality, and competitiveness. The organization currently relies heavily on manual processes and lacks a comprehensive end-to-end automation strategy for software development and delivery pipeline. This has resulted in several key issues:
 - Manual, Error-Prone Workflows
 - Inconsistent Testing and Quality Assurance
@@ -32,7 +32,7 @@ To achieve the desired state by addressing the concerned challenges, DevOps Team
 
 
 
-### Why GitOps ??
+## Why GitOps ??
 - **Modern Approach:** GitOps is a **modern approach** to managing and automating the deployment and operation of infrastructure and applications, particularly in cloud-native environments. The core idea of GitOps is to use Git repositories as the single source of truth for defining and managing your infrastructure, application configurations, and deployment processes. 
 
 - **Continuous Synchronization:** GitOps tools continuously monitor the Git repository for changes and synchronize the state of the system with the declared state.
@@ -42,17 +42,17 @@ To achieve the desired state by addressing the concerned challenges, DevOps Team
 - **Collaboration:** GitOps encourages collaboration among development and operations teams. By storing Kubernetes configurations in Git repositories, you can use Git's collaboration features, including pull requests and code reviews, to ensure high-quality configurations.
 
 
-## Installation
+# Installation
 
 **Jenkins**
 ```
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
-sudo apt-get install jenkins -y
+sudo apt-get install jenkins
 
 sudo systemctl enable jenkins
 sudo systemctl restart jenkins
@@ -104,7 +104,7 @@ hZNPQCsebEDT6Xce
 ```
 
 
-## Pipeline 
+# Pipeline 
 I have created two pipelines in Jenkins. One for Continuous Integration(CI) and another for [Continuous Deployment](https://github.com/saeedalig/k8s-manifest.git)
 . CI pipeline ends with triggering the CD pileline. To keep the project simple, I have added few stages in CD pipeline that only update the IMAGE_TAG coming from the CI pipeline in the deployment manifest and then push it to the GitHub to get the latest changes reflected in Kubernetes Cluster through `Argocd`.  
 
