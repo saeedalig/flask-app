@@ -8,8 +8,6 @@ pipeline{
         IMAGE_NAME = "${DOCKERHUB}" + "/" + "${APP_NAME}"
         REGISTRY_CREDS = "docker-auth"
     }
-
-
 	
     stages {
 	
