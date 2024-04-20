@@ -6,7 +6,7 @@ pipeline{
         APP_NAME = "flask-app"
         IMAGE_TAG = "${BUILD_NUMBER}"
         IMAGE_NAME = "${DOCKERHUB}" + "/" + "${APP_NAME}"
-        REGISTRY_CREDS = "docker-auth"
+        REGISTRY_CREDS = "docker-creds"
     }
 	
     stages {
@@ -42,17 +42,17 @@ pipeline{
             }
         }
         
-        stage('Delete Docker Images'){
-            steps {
-                sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-                sh "docker rmi ${IMAGE_NAME}:latest"
-            }
-        }
+        // stage('Delete Docker Images'){
+        //     steps {
+        //         sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+        //         sh "docker rmi ${IMAGE_NAME}:latest"
+        //     }
+        // }
         
-        stage ('Trigger CD Job') {
-            steps {
-                sh "curl -v -k --user devops:11fc52e17d5d2dc14c59634022bcb40018 -X POST -H 'cache-control: no-cache' -H  'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://172.30.119.251:8080/job/flaskAp-CD/buildWithParameters?token=gitops-token'"
-            }
-        }
+        // stage ('Trigger CD Job') {
+        //     steps {
+        //         sh "curl -v -k --user devops:11fc52e17d5d2dc14c59634022bcb40018 -X POST -H 'cache-control: no-cache' -H  'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://172.30.119.251:8080/job/flaskAp-CD/buildWithParameters?token=gitops-token'"
+        //     }
+        // }
     }
 }
