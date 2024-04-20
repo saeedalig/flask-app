@@ -1,4 +1,4 @@
-FROM python:3.9-slim-buster  
+FROM python:alpine3.19   #python:3.9-slim-buster  
 RUN pip install flask
 WORKDIR /app
 COPY app.py .
