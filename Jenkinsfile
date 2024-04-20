@@ -43,14 +43,15 @@ pipeline{
         // }
 
 	stage('Run Docker Container') {
-            steps {
-                script {
-                    docker.withRun('-p 5000:5000 ${IMAGE_NAME}:${BUILD_NUMBER}') { c ->
-                        echo "Container is running with container ID ${c.id}"
-                    }
-                }
-            }
-        }
+	    steps {
+	        script {
+	            docker.withRun(runOptions: "-p 5000:5000 ${IMAGE_NAME}:${BUILD_NUMBER}") { c ->
+	                echo "Container is running with container ID ${c.id}"
+	            }
+	        }
+	    }
+	}
+
         
         // stage('Delete Docker Images'){
         //     steps {
