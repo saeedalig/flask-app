@@ -7,6 +7,7 @@ pipeline{
         IMAGE_TAG = "${BUILD_NUMBER}"
         IMAGE_NAME = "${DOCKERHUB}" + "/" + "${APP_NAME}"
         REGISTRY_CREDS = "docker-creds"
+        SCANNER_HOME = tool 'sonar'
     }
 	
     stages {
@@ -20,6 +21,20 @@ pipeline{
         stage('Code Checkout'){
             steps{
                 git branch: 'main', url: 'https://github.com/saeedalig/flask-app.git'
+            }
+        }
+
+        stage('SonarQube Analysis'){
+            steps{
+                withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
+                    sh """
+                    $SCANNER_HOME/bin/sonar \
+                    -Dsonar.organization=devopsas \
+                    -Dsonar.projectKey=wanderlust \
+                    -Dsonar.sources=. \
+                    -Dsonar.host.url=https://sonarcloud.io
+                    """
+                }
             }
         }
         
@@ -50,7 +65,6 @@ pipeline{
 	        }
 	    }
 	}
-
         
         // stage('Delete Docker Images'){
         //     steps {
